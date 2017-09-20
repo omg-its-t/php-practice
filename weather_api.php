@@ -1,7 +1,7 @@
 <?php 
 
 	if(!empty($_GET['location'])){
-		$apikey = '{API KEY}';
+		$apikey = {API KEY};
 		$url = 'http://api.openweathermap.org/data/2.5/forecast?zip='.urlencode($_GET['location']).',us&APPID='.$apikey;
 
 		//makes the request
@@ -15,11 +15,8 @@
 		//saving temp which is inside main, which is inside of an array
 		$kTemp = $weather->list[0]->main->temp;
 		$name = $weather->city->name;
-		
 		//converting kelvin temp to F
 		$temp = round($kTemp*(9/5)-459.67, 1);
-		print $temp;
-		print $name;
 	}
 ?>
 
@@ -30,8 +27,11 @@
 </head>
 <body>
 	<form action="">
-		<input type="text" name="location">
-		<button type="submit">Check Weather</button>
+		<input type="text" name="location" placeholder="Enter Zip Code">
+		<button type="submit">Submit</button>
 	</form>
+		<p>
+			<?php print "The temp is ".$temp." in ".$name;?>
+		</p>
 </body>
 </html>
